@@ -1,65 +1,69 @@
 package com.rjsang.carson.model;
 
+import java.util.ArrayList;
 import java.util.List;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * A Lodge
  *
  * @author rjsang
  */
-public class Lodge
-{
+@Entity
+public class Lodge {
 
-  @Id
-  private Integer id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  private String name;
+    private String name;
 
-  private int number;
+    private int number;
 
-  @DBRef
-  private List<Meeting> meetings;
+    @OneToMany(mappedBy = "lodge")
+    private List<Meeting> meetings;
 
-  public Integer getId()
-  {
-    return id;
-  }
+    public Lodge() {
+    }
 
-  public void setId(Integer id)
-  {
-    this.id = id;
-  }
+    public Lodge(String name, int number) {
+        this.name = name;
+        this.number = number;
+    }
 
-  public String getName()
-  {
-    return name;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setName(String name)
-  {
-    this.name = name;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public int getNumber()
-  {
-    return number;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setNumber(int number)
-  {
-    this.number = number;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public List<Meeting> getMeetings()
-  {
-    return meetings;
-  }
+    public int getNumber() {
+        return number;
+    }
 
-  public void setMeetings(List<Meeting> meetings)
-  {
-    this.meetings = meetings;
-  }
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public List<Meeting> getMeetings() {
+        return meetings;
+    }
+
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings = meetings;
+    }
 
 }

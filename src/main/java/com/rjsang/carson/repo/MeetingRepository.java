@@ -1,13 +1,13 @@
 package com.rjsang.carson.repo;
 
 import com.rjsang.carson.model.Meeting;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- *
- * @author sangr1
+ * {@link Meeting} repository
+ * 
+ * @author rjsang
  */
-public interface MeetingRepository extends MongoRepository<Meeting, Integer>
-{
-
+public interface MeetingRepository extends JpaRepository<Meeting, Long> {
+    
 }

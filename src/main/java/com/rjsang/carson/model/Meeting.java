@@ -1,53 +1,71 @@
 package com.rjsang.carson.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * A {@link Lodge} meeting
  *
  * @author rjsang
  */
-public class Meeting
-{
+@Entity
+public class Meeting {
 
-  @Id
-  private Long id;
+    @Id
+    private Long id;
 
-  private Date dateTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime dateTime;
 
-  private String description;
+    private String description;
+    
+    @ManyToOne
+    private Lodge lodge;
 
+    public Meeting() {
+    }
 
-  public Long getId()
-  {
-    return id;
-  }
+    public Meeting(LocalDateTime dateTime, String description, Lodge lodge) {
+        this.dateTime = dateTime;
+        this.description = description;
+        this.lodge = lodge;
+    }
 
-  public void setId(Long id)
-  {
-    this.id = id;
-  }
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
 
-  public Date getDateTime()
-  {
-    return dateTime;
-  }
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
 
-  public void setDateTime(Date dateTime)
-  {
-    this.dateTime = dateTime;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public String getDescription()
-  {
-    return description;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public void setDescription(String description)
-  {
-    this.description = description;
-  }
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Lodge getLodge() {
+        return lodge;
+    }
+
+    public void setLodge(Lodge lodge) {
+        this.lodge = lodge;
+    }
 
 }
