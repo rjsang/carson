@@ -1,5 +1,6 @@
 package com.rjsang.carson.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -25,6 +26,7 @@ public class Meeting {
     private String description;
     
     @ManyToOne
+    @JsonIgnore
     private Lodge lodge;
 
     public Meeting() {

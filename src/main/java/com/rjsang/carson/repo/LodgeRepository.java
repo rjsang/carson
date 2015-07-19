@@ -1,6 +1,7 @@
 package com.rjsang.carson.repo;
 
 import com.rjsang.carson.model.Lodge;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,7 +9,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author rjsang
  */
-public interface LodgeRepository extends JpaRepository<Lodge, Long>
-{
+public interface LodgeRepository extends JpaRepository<Lodge, Long> {
 
+    public List<Lodge> findAllOrderByNumber();
+    
+    public List<Lodge> findByNumber(int number);
+    
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 /**
  * A Lodge
@@ -24,6 +25,7 @@ public class Lodge {
     private int number;
 
     @OneToMany(mappedBy = "lodge")
+    @OrderBy(value = "dateTime")
     private List<Meeting> meetings;
 
     public Lodge() {
