@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface LodgeRepository extends JpaRepository<Lodge, Long> {
 
-    public List<Lodge> findAllOrderByNumber();
+    public List<Lodge> findByOrderByNumber();
     
     public List<Lodge> findByNumber(int number);
     

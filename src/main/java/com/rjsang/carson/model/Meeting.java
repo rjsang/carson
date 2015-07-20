@@ -2,12 +2,10 @@ package com.rjsang.carson.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
-import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * A {@link Lodge} meeting
@@ -17,10 +15,11 @@ import javax.persistence.TemporalType;
 @Entity
 public class Meeting {
 
-    @Id
+  @Id
+  @GeneratedValue
     private Long id;
 
-    @Temporal(TemporalType.TIMESTAMP)
+  //  @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dateTime;
 
     private String description;

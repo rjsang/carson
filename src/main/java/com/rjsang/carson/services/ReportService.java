@@ -24,7 +24,7 @@ public class ReportService {
     
     public List<ReportRow> allLodges() {
         List<ReportRow> report = new ArrayList<>();
-        List<Lodge> lodges = lodgeRepository.findAllOrderByNumber();
+        List<Lodge> lodges = lodgeRepository.findByOrderByNumber();
         for(Lodge lodge : lodges) {
             for(Meeting meeting : lodge.getMeetings()) {
                 report.add(new ReportRow(meeting));

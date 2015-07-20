@@ -7,15 +7,16 @@ package com.rjsang.carson.repo;
 
 import com.rjsang.carson.TheCarsonReport;
 import com.rjsang.carson.model.Lodge;
-import java.util.List;
 import javax.inject.Inject;
 import org.fest.assertions.Assertions;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
+import static org.fest.assertions.Assertions.assertThat;
 
 /**
  *
@@ -29,9 +30,13 @@ public class LodgeRepositoryTest {
     @Inject
     private LodgeRepository repo;
     
-    @Test
+  @Test
+  @Transactional
     public void testFindByNumber() {
-        Assertions.assertThat(repo.findByNumber(474)).hasSize(1);
+      Assertions.assertThat(repo.findByNumber(474)).hasSize(1);
+
+      Lodge kauri = repo.findByNumber(474).get(0);
+      assertThat(kauri.getMeetings()).hasSize(2);
     }
     
     @Test
