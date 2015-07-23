@@ -1,11 +1,13 @@
 package com.rjsang.carson.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.time.LocalDateTime;
+import java.time.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import static java.time.ZonedDateTime.of;
 
 /**
  * A {@link Lodge} meeting
@@ -20,7 +22,7 @@ public class Meeting {
     private Long id;
 
   //  @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime dateTime;
+    private OffsetDateTime dateTime;
 
     private String description;
     
@@ -31,17 +33,29 @@ public class Meeting {
     public Meeting() {
     }
 
-    public Meeting(LocalDateTime dateTime, String description, Lodge lodge) {
+  public Meeting(OffsetDateTime dateTime, String description, Lodge lodge)
+  {
         this.dateTime = dateTime;
         this.description = description;
         this.lodge = lodge;
-    }
+  }
 
-    public LocalDateTime getDateTime() {
+  public Meeting(LocalDateTime localDateTime, String description, Lodge lodge)
+  {
+    ZonedDateTime zoned = of(localDateTime, ZoneId.of("Pacific/Auckland"));
+    this.dateTime = zoned.toOffsetDateTime();
+    this.description = description;
+    this.lodge = lodge;
+  }
+
+
+  public OffsetDateTime getDateTime()
+  {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+  public void setDateTime(OffsetDateTime dateTime)
+  {
         this.dateTime = dateTime;
     }
 

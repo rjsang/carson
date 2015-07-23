@@ -35,7 +35,7 @@ public class TheCarsonReport {
             lodgeRepo.save(kauri);
 
             meetingRepo.deleteAll();
-            Meeting thirdDegree = new Meeting(LocalDateTime.of(2015, Month.AUGUST, 20, 19, 30), "Third Degree: Bro Brenton Dix", kauri);
+          Meeting thirdDegree = new Meeting(LocalDateTime.of(2015, Month.AUGUST, 20, 19, 30), "Third Degree: Bro Brenton Dix", kauri);
             Meeting firstDegree = new Meeting(LocalDateTime.of(2015, Month.SEPTEMBER, 17, 19, 30), "First Degree: Mr Peter Riem", kauri);
             meetingRepo.save(thirdDegree);
             meetingRepo.save(firstDegree);

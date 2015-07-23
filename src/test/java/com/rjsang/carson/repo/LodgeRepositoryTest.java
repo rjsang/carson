@@ -7,8 +7,8 @@ package com.rjsang.carson.repo;
 
 import com.rjsang.carson.TheCarsonReport;
 import com.rjsang.carson.model.Lodge;
+import java.util.Set;
 import javax.inject.Inject;
-import org.fest.assertions.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -25,23 +25,28 @@ import static org.fest.assertions.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TheCarsonReport.class)
 @WebAppConfiguration
-public class LodgeRepositoryTest {
-    
-    @Inject
-    private LodgeRepository repo;
-    
+public class LodgeRepositoryTest
+{
+
+  @Inject
+  private LodgeRepository repo;
+
   @Test
   @Transactional
-    public void testFindByNumber() {
-      Assertions.assertThat(repo.findByNumber(474)).hasSize(1);
+  public void testFindByNumber()
+  {
+    Lodge kauri = repo.findByNumber(474).get(0);
+    assertThat(kauri.getMeetings()).hasSize(2);
+  }
 
-      Lodge kauri = repo.findByNumber(474).get(0);
-      assertThat(kauri.getMeetings()).hasSize(2);
-    }
-    
-    @Test
-    public void testFindAllOrderByNumber() {
-        
-    }
-    
+  @Test
+  public void findAllOrderByNumberAndIncludeMeetings()
+  {
+    Set<Lodge> lodges = repo.findAllOrderByNumberAndIncludeMeetings();
+    assertThat(lodges).hasSize(1);
+    Lodge kauri = lodges.iterator().next();
+    assertThat(kauri.getMeetings().get(0).getDescription()).isEqualTo("Third Degree: Bro Brenton Dix");
+    assertThat(kauri.getMeetings().get(1).getDescription()).isEqualTo("First Degree: Mr Peter Riem");
+  }
+
 }

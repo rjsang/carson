@@ -1,18 +1,12 @@
-app.controller('reportController', function (lodgeService) {
+app.controller('reportController', function (reportService) {
     var ctrl = this;
 
-    ctrl.lodgeList = [];
+    ctrl.report = [];
 
-    lodgeService.findAll().success(function (response) {
-        response.content.forEach(function (lodge) {
-            momentise(lodge.meetings);
+    reportService.findAll().success(function (response) {
+        response.forEach(function (meeting) {
+            meeting.dateTime = moment.unix(meeting.dateTime);
         });
-        ctrl.lodgeList = response.content;
+        ctrl.report = response;
     });
 });
-
-function momentise(meetings) {
-    meetings.forEach(function (meeting) {
-        meeting.dateTime = moment(meeting.dateTime);
-    });
-}

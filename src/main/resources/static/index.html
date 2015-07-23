@@ -6,21 +6,23 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="app.css">
 </head>
 <body ng-app="carson">
 
     <div class="container">
         <table class="table" ng-controller="reportController as vm">
-            <tr>
+            <tr class="alternate">
                 <th>Lodge</th>
                 <th>Month</th>
                 <th>Date</th>
                 <th>&nbsp;</th>
             </tr>
-            <tr ng-repeat="lodge in lodgeList">
-                <td>{{lodge.name}} {{lodge.number}}</td>
-                <td></td>
+            <tr ng-repeat="meeting in vm.report" ng-class-even="'alternate'">
+                <td>{{meeting.lodge}}</td>
+                <td>{{meeting.dateTime.format("MMM").toUpperCase()}}</td>
+                <td>{{meeting.dateTime.format("ddd D")}}</td>
+                <td>{{meeting.description}}</td>
             </tr>
         </table>
     </div>

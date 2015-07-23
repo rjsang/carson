@@ -1,6 +1,6 @@
 package com.rjsang.carson.model;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 /**
  * A row in a report table.
@@ -11,7 +11,7 @@ public class ReportRow {
     
     private String lodge;
     
-    private LocalDateTime dateTime;
+  private OffsetDateTime dateTime;
     
     private String description;
 
@@ -32,11 +32,13 @@ public class ReportRow {
         this.lodge = lodge;
     }
 
-    public LocalDateTime getDateTime() {
+  public OffsetDateTime getDateTime()
+  {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+  public void setDateTime(OffsetDateTime dateTime)
+  {
         this.dateTime = dateTime;
     }
 

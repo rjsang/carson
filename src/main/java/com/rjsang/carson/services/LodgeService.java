@@ -18,7 +18,7 @@ public class LodgeService {
     @Inject
     private LodgeRepository lodgeRepository;
     
-    @RequestMapping("/")
+  @RequestMapping("/all")
     public Iterable<Lodge> allLodges() {
         return lodgeRepository.findAll();
     }
