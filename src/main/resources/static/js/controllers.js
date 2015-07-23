@@ -1,3 +1,11 @@
+app.controller('navController', function ($location) {
+    var ctrl = this;
+    
+    ctrl.isActive = function (viewLocation) { 
+        return viewLocation === $location.path();
+    };
+});
+
 app.controller('reportController', function (reportService) {
     var ctrl = this;
 
@@ -10,3 +18,4 @@ app.controller('reportController', function (reportService) {
         ctrl.report = response;
     });
 });
+

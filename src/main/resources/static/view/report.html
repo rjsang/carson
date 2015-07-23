@@ -1,0 +1,14 @@
+<table class="table" ng-controller="reportController as vm">
+    <tr class="alternate">
+        <th>Lodge</th>
+        <th>Month</th>
+        <th>Date</th>
+        <th>&nbsp;</th>
+    </tr>
+    <tr ng-repeat="meeting in vm.report" ng-class-even="'alternate'">
+        <td class="lodgeDetail"><span ng-hide="meeting.lodge == vm.report[$index - 1].lodge">{{meeting.lodge}}</span></td>
+        <td>{{meeting.dateTime.format("MMM").toUpperCase()}}</td>
+        <td>{{meeting.dateTime.format("ddd D")}}</td>
+        <td>{{meeting.description}}</td>
+    </tr>
+</table>

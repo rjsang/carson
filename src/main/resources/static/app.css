@@ -1,5 +1,22 @@
+.navbar-brand {
+    background-image: url('img/sc_white_18.png');
+    background-repeat: no-repeat;
+    background-position: 15px 15px;
+    padding-left: 45px;
+    margin-left: 0px;
+}
+#main {
+    padding-top: 60px;
+}
+
+.table>tbody>tr>td {
+    border: 0px;
+}
 .alternate {
     background-color: #dddddd;
+}
+.lodgeDetail {
+    background-color: #ffffff;
 }
 .jumbotron {
     background-color: #ffffff;
