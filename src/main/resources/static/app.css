@@ -1,3 +1,19 @@
 .alternate {
-  background-color: #dddddd;
+    background-color: #dddddd;
+}
+.jumbotron {
+    background-color: #ffffff;
+    padding-bottom: 0px;
+}
+.jumbotron h1 {
+    background-image: url('img/sc36.jpg');
+    background-repeat: no-repeat;
+    padding-left: 38px;
+}
+@media screen and (min-width: 768px) {
+    .jumbotron h1 {
+        background-image: url('img/sc64.jpg');
+        background-repeat: no-repeat;
+        padding-left: 68px;
+    }
 }
