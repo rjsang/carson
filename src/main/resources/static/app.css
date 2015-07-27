@@ -34,3 +34,16 @@
         padding-left: 68px;
     }
 }
+
+.loginForm {
+    max-width: 330px;
+}
+
+.signupForm {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.box-one.ng-hide {
+  opacity:0;
+}
