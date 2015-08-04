@@ -1,8 +1,8 @@
 package com.rjsang.carson.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.*;
 
 /**
  * A registered user of the site
@@ -19,9 +19,13 @@ public class Brother
 
   private String name;
 
+  @Column(unique = true)
   private String email;
 
   private String password;
+
+  @ElementCollection
+  private Set<String> roles = new HashSet<>();
 
   public Long getId()
   {
@@ -61,6 +65,16 @@ public class Brother
   public void setPassword(String password)
   {
     this.password = password;
+  }
+
+  public Set<String> getRoles()
+  {
+    return roles;
+  }
+
+  public void setRoles(Set<String> roles)
+  {
+    this.roles = roles;
   }
 
 }

@@ -1,15 +1,55 @@
-<h2>Sign in</h2>
-<form class="loginForm" ng-controller="navController as nav" ng-submit="vm.login()">
-    <label for="inputEmail">Email address</label>
-    <input type="email" id="inputEmail" ng-model="nav.credentials.email" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" id="inputPassword" ng-model="nav.credentials.password" class="form-control" placeholder="Password" required>
-    <div>
-      <input type="submit" class="btn btn-default" value="Sign in" />
-      <button class="btn btn-primary" type="button" ng-click="nav.isNew = true">I'm new</button>
-    </div>
-    <ng-form class="signupForm" ng-controller="signupController as vm" ng-submit="vm.signup()" ng-hide="!nav.isNew">
-        <label for="confirmPassword">Confirm password</label>
-        <input type="password" id="confirmPassword" ng-model="vm.confirmPassword" class="form-control" placeholder="Confirm password" required>
-    </ng-form>
-</form>
+<tabset>
+  <tab heading="Sign in">
+    
+    <form class="form-horizontal loginForm" ng-controller="navController as nav" ng-submit="vm.login()">
+      <div class="form-group col-xs-12">
+        <label for="inputEmail" class="control-label col-xs-3">Email address</label>
+        <div class="col-xs-9">
+          <input type="email" id="inputEmail" ng-model="nav.credentials.email" class="form-control" placeholder="Email address" required autofocus>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <label for="inputPassword" class="control-label col-xs-3">Password</label>
+        <div class="col-xs-9 ">
+          <input type="password" id="inputPassword" ng-model="nav.credentials.password" class="form-control" placeholder="Password" required>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <div class="col-xs-offset-3 col-xs-9">
+          <button type="submit" class="btn btn-default">Sign in</button>
+        </div>
+      </div>
+
+    </form>
+  </tab>
+  <tab heading="Register">
+    <form class="form-horizontal loginForm" ng-controller="signupController as vm" ng-submit="vm.signup()">
+      <div class="form-group col-xs-12">
+        <label for="registerEmail" class="control-label col-xs-3">Name</label>
+        <div class="col-xs-9">
+          <input type="email" id="registerEmail" ng-model="vm.name" class="form-control" placeholder="Your name" required autofocus>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <label for="registerEmail" class="control-label col-xs-3">Email address</label>
+        <div class="col-xs-9">
+          <input type="email" id="registerEmail" ng-model="vm.email" class="form-control" placeholder="Email address" required autofocus>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <label for="registerPassword" class="control-label col-xs-3">Password</label>
+        <div class="col-xs-9 ">
+          <input type="password" id="registerPassword" ng-model="vm.password" class="form-control" placeholder="Password" required>
+        </div>
+      </div>
+      <div class="form-group col-xs-12">
+        <div class="col-xs-offset-3 col-xs-9">
+          <button type="submit" class="btn btn-default">Register</button>
+        </div>
+      </div>
+    </form>
+  </tab>
+
+</tabset>
+
+
