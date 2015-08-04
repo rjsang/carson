@@ -42,8 +42,9 @@
 .signupForm {
   -webkit-transition:all linear 0.5s;
   transition:all linear 0.5s;
+  padding-top: 10px;
 }
 
-.box-one.ng-hide {
+.signupForm.ng-hide {
   opacity:0;
 }

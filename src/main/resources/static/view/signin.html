@@ -4,10 +4,12 @@
     <input type="email" id="inputEmail" ng-model="nav.credentials.email" class="form-control" placeholder="Email address" required autofocus>
     <label for="inputPassword">Password</label>
     <input type="password" id="inputPassword" ng-model="nav.credentials.password" class="form-control" placeholder="Password" required>
-    <input type="submit" class="btn btn-default" value="Sign in" />
-    <button class="btn btn-primary" ng-click="nav.isNew = true">I'm new</button>
-    <form class="signupForm" ng-controller="signupController as vm" ng-submit="vm.signup()" ng-show="nav.isNew">
+    <div>
+      <input type="submit" class="btn btn-default" value="Sign in" />
+      <button class="btn btn-primary" type="button" ng-click="nav.isNew = true">I'm new</button>
+    </div>
+    <ng-form class="signupForm" ng-controller="signupController as vm" ng-submit="vm.signup()" ng-hide="!nav.isNew">
         <label for="confirmPassword">Confirm password</label>
         <input type="password" id="confirmPassword" ng-model="vm.confirmPassword" class="form-control" placeholder="Confirm password" required>
-    </form>
+    </ng-form>
 </form>

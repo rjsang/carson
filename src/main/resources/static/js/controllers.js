@@ -74,3 +74,7 @@ app.controller('reportController', function (reportService) {
         ctrl.report = response;
     });
 });
+
+app.controller('signupController', function () {
+    var ctrl = this;
+});
