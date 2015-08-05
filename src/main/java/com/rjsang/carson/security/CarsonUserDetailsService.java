@@ -4,6 +4,7 @@ import com.rjsang.carson.model.Brother;
 import com.rjsang.carson.repo.BrethrenRepository;
 import java.util.*;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,13 +14,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MyUserDetailsService implements UserDetailsService
+public class CarsonUserDetailsService implements UserDetailsService
 {
 
   @Inject
   private BrethrenRepository repo;
 
   @Override
+  @Transactional
   public UserDetails loadUserByUsername(final String email)
       throws UsernameNotFoundException
   {

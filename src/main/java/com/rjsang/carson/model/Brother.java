@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.EAGER;
+
 /**
  * A registered user of the site
  *
@@ -24,7 +26,7 @@ public class Brother
 
   private String password;
 
-  @ElementCollection
+  @ElementCollection(fetch = EAGER)
   private Set<String> roles = new HashSet<>();
 
   public Long getId()

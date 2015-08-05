@@ -1,42 +1,16 @@
-app.controller('navController', function ($location, $http, $rootScope, $scope) {
-    var ctrl = this;
-    
-    ctrl.isNew = false;
-    
-    ctrl.isActive = function (viewLocation) { 
-        return viewLocation === $location.path();
-    };
-    
-    ctrl.authenticate = function (credentials, callback) {
+app.controller('navController', function ($location, $http, $rootScope, $scope, authService) {
+  var ctrl = this;
 
-    var headers = credentials ? {
-      authorization: "Basic "
-              + btoa(credentials.email + ":"
-                      + credentials.password)
-    } : {};
+  ctrl.isActive = function (viewLocation) {
+    return viewLocation === $location.path();
+  };
 
-    $http.get('/auth/user', {
-      headers: headers
-    }).success(function (data) {
-      if (data.name) {
-        $rootScope.authenticated = true;
-      } else {
-        $rootScope.authenticated = false;
-      }
-      callback && callback($rootScope.authenticated);
-    }).error(function () {
-      $rootScope.authenticated = false;
-      callback && callback(false);
-    });
-
-  }
-
-  ctrl.authenticate();
+  authService.authenticate();
 
   ctrl.credentials = {};
 
   ctrl.login = function () {
-    ctrl.authenticate(ctrl.credentials, function (authenticated) {
+    authService.authenticate(ctrl.credentials, function (authenticated) {
       if (authenticated) {
         console.log("Login succeeded")
         $location.path("/");
@@ -44,7 +18,7 @@ app.controller('navController', function ($location, $http, $rootScope, $scope) 
         $rootScope.authenticated = true;
       } else {
         console.log("Login failed")
-        $location.path("/login");
+        $location.path("/signin");
         $scope.error = true;
         $rootScope.authenticated = false;
       }
@@ -52,29 +26,45 @@ app.controller('navController', function ($location, $http, $rootScope, $scope) 
   };
 
   ctrl.logout = function () {
-    $http.post('/auth/logout', {}).success(function () {
-      $rootScope.authenticated = false;
+    authService.logout(function() {
       $location.path("/");
-    }).error(function (data) {
-      console.log("Logout failed")
-      $rootScope.authenticated = false;
     });
   }
 });
 
 app.controller('reportController', function (reportService) {
-    var ctrl = this;
+  var ctrl = this;
 
-    ctrl.report = [];
+  ctrl.report = [];
 
-    reportService.findAll().success(function (response) {
-        response.forEach(function (meeting) {
-            meeting.dateTime = moment.unix(meeting.dateTime);
-        });
-        ctrl.report = response;
+  reportService.findAll().success(function (response) {
+    response.forEach(function (meeting) {
+      meeting.dateTime = moment.unix(meeting.dateTime);
     });
+    ctrl.report = response;
+  });
 });
 
-app.controller('signupController', function () {
-    var ctrl = this;
+app.controller('signupController', function (brethrenService, $location, authService) {
+  var ctrl = this;
+  ctrl.details = {};
+
+  ctrl.signup = function () {
+    brethrenService.addUser(ctrl.details).success(function () {
+      authService.authenticate(ctrl.details, function (authenticated) {
+        if (authenticated) {
+          console.log("Login succeeded")
+          $location.path("/");
+          $scope.error = false;
+          $rootScope.authenticated = true;
+        } else {
+          console.log("Login failed")
+          $location.path("/signin");
+          $scope.error = true;
+          $rootScope.authenticated = false;
+        }
+      })
+    });
+  }
+
 });

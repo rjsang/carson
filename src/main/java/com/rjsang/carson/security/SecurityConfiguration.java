@@ -40,8 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
   protected void configure(HttpSecurity http) throws Exception
   {
     http.httpBasic().and().authorizeRequests()
-        .antMatchers("/index.html", "/login.html", "/movies/movies.html", "/").permitAll().anyRequest()
-        .authenticated().and().csrf()
+        .antMatchers("/index.html", "/", "/view/*.html", "/brethren/add", "/auth/user", "/reports/*").permitAll()
+        .anyRequest().authenticated().and().csrf()
         .csrfTokenRepository(csrfTokenRepository()).and()
         .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class);
   }
